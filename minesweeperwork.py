@@ -3,6 +3,7 @@
 #sources from ms.Healey gihub for end code minesweeper board
 #and python cheat sheet
 # and python library
+#on my honor
 
 import sys
 import random
@@ -55,10 +56,12 @@ def boards():
 
 
 	#end code from ms.Healey
+	#reference (cheat code you can comment it out if you want)
 	for i in range (1,len(board)-1):
 		for j in range(1,len(board[0])-1):
 			print(board[i][j],end=" ")
 		print("")
+	print('-'*20)
 
 		#added borders
 	board2 = [["X"]*(w+2) for z in range(h+2)]

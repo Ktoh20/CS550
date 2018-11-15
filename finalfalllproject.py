@@ -1,7 +1,7 @@
 # Kyn Toh and Pearson Mewbourne maze
 #make a path with 2 points
 #make a path that connects the 2 points in the middle
-#timer fucntion
+#timer function
 #on my honor
 #due november 15th (extension)
 from PIL import Image 
@@ -9,7 +9,15 @@ import random as random
 import math as m
 import time
 #decided to make it more gamelike, even though the maze can become much larger we thought that 7 by 7 was hard enough within 7 seconds
-choice = int(input("Choose difficulity, (1-3) 1 = easy, 2 = medium, 3 = hard\n\n>>"))
+
+while True:
+	try:
+		choice = int(input("Choose difficulity, (1-3) 1 = easy, 2 = medium, 3 = hard\n\n>>"))
+		if choice >= 1 and choice <= 3:
+			break
+	except:
+		ValueError
+
 if choice == 1:
 	imgx = 5
 if choice == 2:
@@ -38,7 +46,7 @@ def stopfunc():
 		for y in range(1,imgy*2+2):
 			if board[y][x] == 0:
 				stop += 1
-				print(stop)
+				#print(stop)
 	if stop > 0:
 		if imgx%2 == 0:
 			vx = random.choice(range(0,imgx*2+1,2))
@@ -51,7 +59,9 @@ def stopfunc():
 #this was the code that generated the first occupied space in the maze
 def blank(vx,vy):
 	if vx-1 > 0 and vy-1>0:
-		board[vx][vy] = " " 
+		# we tried to use a for loop here with i and i2 in ranges (-1,2) to avoid so many specific lines,
+		#but using it would always cause a recursion error.
+		board[vx][vy] = " "
 		board[vx+1][vy+1] = "F"
 		board[vx][vy+1] = "F"
 		board[vx-1][vy+1] = "F"
@@ -72,7 +82,6 @@ def choice(vx,vy):
 	count = 0
 	up, down, left, right = 0,0,0,0
 	direction = random.randint(0,4)
-
 	if vy+2<imgy:
 		if direction == 1:
 			count+=1
@@ -84,7 +93,6 @@ def choice(vx,vy):
 			down = 1
 	else: 
 		printo()
-
 	if vy-2>0:
 		if direction == 2:
 			count+=1
@@ -180,10 +188,14 @@ def printo():
 
 #this is the start and the timer function was inspired by many sources online
 #some of the inspirations will be posted in the comment section of seesaw
-start = input("Welcome to the maze! This isn't like your regular maze, there are multiple entrances and multiples exits\nnavigate your way through, if you chose a bad entrance...too bad!\nyou have seven seconds to solve the maze, press y to start\n\n>>")
+
+while True:
+	start = input("Welcome to the maze! This isn't like your regular maze, there are multiple entrances and multiples exits\nnavigate your way through, if you chose a bad entrance...too bad!\nyou have seven seconds to solve the maze, press y to start\n\n>>")
+	if start == "y":
+		break
+
+
 if start == "y":
-
-
 	print(vx,vy)
 	blank(vx,vy)
 	for i in range (1,len(board)):
@@ -199,6 +211,3 @@ while timeloop:
 	if Sec >= 7:
 		print("your seven seconds are up")
 		quit()
-else:
-	print("ok no game for you")
-

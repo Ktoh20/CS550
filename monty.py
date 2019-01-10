@@ -2,11 +2,11 @@
 #Statistically there is a larger chance to win a prize if you switch because in the beginning you chose something with at 33% but now its 66% because by switching you are effectively choosing 2 choices(the crossed out one and the new one)
 import random
 #doors
+w = 0
 for i in range(1001):
 	board = [1,2,3]
 
 	# while i < 1001:
-	w = 0
 	car = random.randint(1,3)
 	choice = random.randint(1,3)
 	print(car)
@@ -18,7 +18,7 @@ for i in range(1001):
 		if car == choice:
 			print("WON")
 			# i+1
-			# w+1
+			w+=1
 			print(board)
 		else:
 			#switch code
@@ -28,9 +28,9 @@ for i in range(1001):
 			if choice2==1:
 				choice2 == 2
 			if choice2 == car:
+				w+=1
 				print("won b switch")
 				# i+1
-				# w+1
 			print(board)
 	if car == 2:
 		board.remove(2)
@@ -43,7 +43,7 @@ for i in range(1001):
 		if car == choice:
 			print("WON")
 			# i+1
-			# w+1
+			w+=1
 			print(board)
 		else:
 			#switch code
@@ -55,7 +55,7 @@ for i in range(1001):
 			if choice2 == car:
 				print("won b switch")
 				# i+1
-				# w+1
+				w+=1
 			print(board)
 	if car == 3:
 		board.remove(3)
@@ -64,7 +64,7 @@ for i in range(1001):
 		if car == choice:
 			print("WON")
 			# i+1
-			# w+1
+			w+=1
 			print(board)
 		else:
 			#switch code
@@ -77,5 +77,6 @@ for i in range(1001):
 			if choice2 == car:
 				print("won b switch")
 				# i+1
-				# w+1
+				w+=1
+print(w)
 
